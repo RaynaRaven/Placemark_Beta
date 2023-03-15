@@ -1,0 +1,20 @@
+<div class="table-container">
+    <table class="table is-hoverable is-fullwidth">
+        <thead>
+        <tr>
+            <th class="has-text-weight-normal">Name</th>
+            <th class="has-text-weight-normal">Description</th>
+            <th class="has-text-weight-normal">Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each category.locations}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{description}}</td>
+                <td>{{location}}</td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
