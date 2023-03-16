@@ -16,4 +16,7 @@ export const webRoutes = [
   { method: "POST", path: "/dashboard/addCategory", config: dashboardController.addCategory },
   { method: "GET", path: "/category/{id}", config: categoryController.index },
   { method: "POST", path: "/category/{id}/addLocation", config: categoryController.addLocation },
+  { method: "GET", path: "/dashboard/deletecategory/{id}", config: dashboardController.deleteCategory },
+  { method: "GET", path: "/playlist/{id}/deletetrack/{trackid}", config: categoryController.deleteLocation },
+
 ];
