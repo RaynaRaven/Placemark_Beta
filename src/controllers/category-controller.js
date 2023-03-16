@@ -24,4 +24,12 @@ export const categoryController = {
       return h.redirect(`/category/${category._id}`);
     },
   },
+
+  deleteLocation: {
+    handler: async function(request, h) {
+      const category = await db.categoryStore.getCategoryById(request.params.id);
+      await db.locationStore.deleteLocation(request.params.locationId);
+      return h.redirect(`/category/${category._id}`);
+    },
+  },
 };
