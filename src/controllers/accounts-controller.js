@@ -2,6 +2,7 @@ import { db } from "../models/db.js";
 
 export const accountsController = {
   index: {
+    auth: false,
     handler: function (request, h) {
       return h.view("main", { title: "Welcome to myPOI" });
     },

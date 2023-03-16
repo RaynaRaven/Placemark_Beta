@@ -21,6 +21,16 @@ async function init() {
   });
   await server.register(Vision);
   await server.register(Cookie);
+  server.auth.strategy("session", "cookie", {
+    cookie: {
+      name: "myPOI",
+      password: "secretpasswordnotrevealedtoanyone",
+      isSecure: false,
+    },
+    redirectTo: "/",
+    validate: accountsController.validate,
+  });
+  server.auth.default("session");
   server.views({
     engines: {
       hbs: Handlebars,
@@ -32,16 +42,7 @@ async function init() {
     layout: true,
     isCached: false,
   });
-  server.auth.strategy("session", "cookie", {
-    cookie: {
-      name: "myPOI",
-      password: "secretpasswordnotrevealedtoanyone",
-      isSecure: false,
-    },
-    redirectTo: "/",
-    validate: accountsController.validate,
-  });
-  server.auth.default("session");
+
   db.init();
   server.route(webRoutes);
   await server.start();
