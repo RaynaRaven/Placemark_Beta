@@ -4,6 +4,7 @@ import Handlebars from "handlebars";
 import path from "path";
 import Cookie from "@hapi/cookie";
 import dotenv from "dotenv";
+import joi from "joi";
 
 // import utilities to locate folder paths
 import { fileURLToPath } from "url";
@@ -14,7 +15,6 @@ import { accountsController } from "./controllers/accounts-controller.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 const result = dotenv.config();
 if (result.error) {
   console.log(result.error.message);
@@ -29,6 +29,7 @@ async function init() {
   });
   await server.register(Vision);
   await server.register(Cookie);
+  server.validator(Joi);
   server.auth.strategy("session", "cookie", {
     cookie: {
       name: process.env.COOKIE_NAME,
