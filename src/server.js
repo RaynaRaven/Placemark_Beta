@@ -4,7 +4,7 @@ import Handlebars from "handlebars";
 import path from "path";
 import Cookie from "@hapi/cookie";
 import dotenv from "dotenv";
-import joi from "joi";
+import Joi from "joi";
 
 // import utilities to locate folder paths
 import { fileURLToPath } from "url";
