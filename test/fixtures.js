@@ -24,3 +24,20 @@ export const testUsers = [
         password: "secret",
     },
 ];
+
+export const fineDining = {
+    name: "Fine Dining"
+};
+
+export const testCategories = [
+    {
+        name: "Cheap Eats"
+    },
+    {
+        name: "Mid-range"
+    },
+    {
+        name: "Bars"
+    }
+];
+

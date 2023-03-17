@@ -1,14 +1,16 @@
 {
   "categories": [
     {
-      "userid": "c8ade20d-4ff0-4e09-9e44-d0381af32301",
-      "title": "Hi",
-      "_id": "29f34f7e-08b1-4317-a100-eb9c70008f97"
+      "name": "Cheap Eats",
+      "_id": "e70b8357-100a-4159-8af6-e3b25c8bea98"
     },
     {
-      "userid": "c8ade20d-4ff0-4e09-9e44-d0381af32301",
-      "title": "hi",
-      "_id": "c943be2e-abae-4953-a2e5-57e8d56878e7"
+      "name": "Mid-range",
+      "_id": "6db722d5-a11a-495b-84a8-13000ffca4cf"
+    },
+    {
+      "name": "Bars",
+      "_id": "c5bac8f7-803d-4cab-9abb-0524a397f28a"
     }
   ]
 }

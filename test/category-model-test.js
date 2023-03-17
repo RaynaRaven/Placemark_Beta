@@ -1,57 +1,55 @@
 import { assert } from "chai";
 import { db } from "../src/models/db.js";
-import { maggie, testUsers } from "./fixtures.js";
+import { testCategories, fineDining } from "./fixtures.js";
 
-suite("User API tests", () => {
+suite("Category Model tests", () => {
 
     setup(async () => {
-        db.init();
-        await db.userStore.deleteAll();
-        for (let i = 0; i < testUsers.length; i += 1) {
+        db.init("json");
+        await db.categoryStore.deleteAllCategories();
+        for (let i = 0; i < testCategories.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
-            await db.userStore.addUser(testUsers[i]);
+            testCategories[i] = await db.categoryStore.addCategory(testCategories[i]);
         }
     });
 
-    test("create a user", async () => {
-        const newUser = await db.userStore.addUser(maggie);
-        assert.equal(newUser, maggie)
+    test("create a category", async () => {
+        const category = await db.categoryStore.addCategory(fineDining);
+        assert.equal(fineDining, category);
+        assert.isDefined(category._id);
     });
 
-    test("delete all users", async () => {
-        let returnedUsers = await db.userStore.getAllUsers();
-        assert.equal(returnedUsers.length, 3);
-        await db.userStore.deleteAll();
-        returnedUsers = await db.userStore.getAllUsers();
-        assert.equal(returnedUsers.length, 0);
-    });
-// creates a user, and then tests if we can retrieve the user by: id,email
-    test("get a user - success", async () => {
-        const user = await db.userStore.addUser(maggie);
-        const returnedUser1 = await db.userStore.getUserById(user._id);
-        assert.deepEqual(user, returnedUser1);
-        const returnedUser2 = await db.userStore.getUserByEmail(user.email);
-        assert.deepEqual(user, returnedUser2);
+    test("delete all categories", async () => {
+        let returnedCategories = await db.categoryStore.getAllCategories();
+        assert.equal(returnedCategories.length, 3);
+        await db.categoryStore.deleteAllCategories();
+        returnedCategories = await db.categoryStore.getAllCategories();
+        assert.equal(returnedCategories.length, 0);
     });
 
-    test("delete One User - success", async () => {
-        await db.userStore.deleteUserById(testUsers[0]._id);
-        const returnedUsers = await db.userStore.getAllUsers();
-        assert.equal(returnedUsers.length, testUsers.length - 1);
-        const deletedUser = await db.userStore.getUserById(testUsers[0]._id);
-        assert.isNull(deletedUser);
+    test("get a category - success", async () => {
+        const category = await db.categoryStore.addCategory(fineDining);
+        const returnedCategory = await db.categoryStore.getCategoryById(category._id);
+        assert.equal(fineDining, category);
     });
 
-    test("get a user - bad params", async () => {
-        assert.isNull(await db.userStore.getUserByEmail(""));
-        assert.isNull(await db.userStore.getUserById(""));
-        assert.isNull(await db.userStore.getUserById());
+    test("delete One Category - success", async () => {
+        const id = testCategories[0]._id;
+        await db.categoryStore.deleteCategoryById(id);
+        const returnedCategories = await db.categoryStore.getAllCategories();
+        assert.equal(returnedCategories.length, testCategories.length - 1);
+        const deletedCategory = await db.categoryStore.getCategoryById(id);
+        assert.isNull(deletedCategory);
     });
 
-    test("delete One User - fail", async () => {
-        await db.userStore.deleteUserById("bad-id");
-        const allUsers = await db.userStore.getAllUsers();
-        assert.equal(testUsers.length, allUsers.length);
+    test("get a category - bad params", async () => {
+        assert.isNull(await db.categoryStore.getCategoryById(""));
+        assert.isNull(await db.categoryStore.getCategoryById());
     });
 
+    test("delete One Category - fail", async () => {
+        await db.categoryStore.deleteCategoryById("bad-id");
+        const allCategories = await db.categoryStore.getAllCategories();
+        assert.equal(testCategories.length, allCategories.length);
+    });
 });
