@@ -34,6 +34,27 @@
       "email": "1@hi.com",
       "password": "22",
       "_id": "c8ade20d-4ff0-4e09-9e44-d0381af32301"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "2fb3407d-cbf5-4af5-97e0-17f75b9d5c56"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "38211825-2ecc-43d1-8360-e02bfe32bf58"
+    },
+    {
+      "firstName": "Maggie",
+      "lastName": "Simpson",
+      "email": "maggie@simpson.com",
+      "password": "secret",
+      "_id": "089c36ba-2ef2-49dc-aea7-d68f0c8566d4"
     }
   ]
 }
