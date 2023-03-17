@@ -1,60 +1,18 @@
 {
   "users": [
     {
-      "firstName": "hi",
-      "lastName": "hi",
-      "email": "hi@hi.com",
-      "password": "yo",
-      "_id": "2db22c7b-3918-488f-bd99-748da99ada60"
-    },
-    {
-      "firstName": "hi",
-      "lastName": "hi",
-      "email": "hi@hi.net",
-      "password": "hi",
-      "_id": "a51be115-0466-457e-a695-1545c3063289"
-    },
-    {
-      "firstName": "yo",
-      "lastName": "yo",
-      "email": "yo@yo.ie",
-      "password": "yo",
-      "_id": "61a4e169-c2a6-489c-a77b-c2c6e51c32e5"
-    },
-    {
-      "firstName": "yo",
-      "lastName": "yo",
-      "email": "yo@yo.ie",
-      "password": "1",
-      "_id": "b93ea331-e681-4970-9dcb-ae87fc7f8d5b"
-    },
-    {
-      "firstName": "hi",
-      "lastName": "hi",
-      "email": "1@hi.com",
-      "password": "22",
-      "_id": "c8ade20d-4ff0-4e09-9e44-d0381af32301"
-    },
-    {
-      "firstName": "Maggie",
+      "firstName": "Marge",
       "lastName": "Simpson",
-      "email": "maggie@simpson.com",
+      "email": "marge@simpson.com",
       "password": "secret",
-      "_id": "2fb3407d-cbf5-4af5-97e0-17f75b9d5c56"
+      "_id": "554d4ce2-46e6-488c-8131-ee7ce3ed1119"
     },
     {
-      "firstName": "Maggie",
+      "firstName": "Bart",
       "lastName": "Simpson",
-      "email": "maggie@simpson.com",
+      "email": "bart@simpson.com",
       "password": "secret",
-      "_id": "38211825-2ecc-43d1-8360-e02bfe32bf58"
-    },
-    {
-      "firstName": "Maggie",
-      "lastName": "Simpson",
-      "email": "maggie@simpson.com",
-      "password": "secret",
-      "_id": "089c36ba-2ef2-49dc-aea7-d68f0c8566d4"
+      "_id": "21fa9fd7-6561-4389-acac-ae6e134eebc9"
     }
   ]
 }
