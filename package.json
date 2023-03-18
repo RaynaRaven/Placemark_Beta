@@ -1,6 +1,6 @@
 {
   "name": "myPOI",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "A PlaceMark Service API and Web App in Hapi JS",
   "main": "src/server.js",
   "type": "module",

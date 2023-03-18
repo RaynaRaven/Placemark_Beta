@@ -1,11 +1,16 @@
 import { assert } from "chai";
 import { db } from "../src/models/db.js";
 import { testCategories, fineDining } from "./fixtures.js";
+import {assertSubset} from "./test-utils.js";
+import { EventEmitter } from "events";
+
+
 
 suite("Category Model tests", () => {
 
     setup(async () => {
-        db.init("json");
+        EventEmitter.setMaxListeners(25);
+        db.init("mongo");
         await db.categoryStore.deleteAllCategories();
         for (let i = 0; i < testCategories.length; i += 1) {
             // eslint-disable-next-line no-await-in-loop
@@ -15,7 +20,7 @@ suite("Category Model tests", () => {
 
     test("create a category", async () => {
         const category = await db.categoryStore.addCategory(fineDining);
-        assert.equal(fineDining, category);
+        assertSubset(fineDining, category);
         assert.isDefined(category._id);
     });
 
@@ -30,7 +35,7 @@ suite("Category Model tests", () => {
     test("get a category - success", async () => {
         const category = await db.categoryStore.addCategory(fineDining);
         const returnedCategory = await db.categoryStore.getCategoryById(category._id);
-        assert.equal(fineDining, category);
+        assertSubset(fineDining, category);
     });
 
     test("delete One Category - success", async () => {
