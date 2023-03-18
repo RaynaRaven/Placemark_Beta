@@ -85,9 +85,9 @@ async function init() {
   });
 
   server.auth.strategy("jwt", "jwt", {
-    key: process.env.cookie_password,
+    key: process.env.COOKIE_PASSWORD,
     validate: validate,
-    verifyOptions: { algorithms: ["HS256"] }
+    verifyOptions: { algorithms: ["HS256"] },
   });
 
   server.auth.default("session");
