@@ -4,6 +4,11 @@ export const maggie = {
     email: "maggie@simpson.com",
     password: "secret",
 };
+
+export const maggieCredentials = {
+    email: "maggie@simpson.com",
+    password: "secret"
+};
 export const testUsers = [
     {
         firstName: "Homer",
@@ -66,6 +71,7 @@ export const testLocations = [
         "location": "52.83576441788635, -6.929947988063202"
     }
 ];
+
 
 export const serviceUrl = "http://localhost:3000";
 

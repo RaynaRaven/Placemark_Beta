@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 import { assert } from "chai";
 import { myPOIService } from "./myPOI-service.js";
 import { assertSubset } from "../test-utils.js";
-import { maggie, fineDining, testCategories } from "../fixtures.js";
+import { maggieCredentials, maggie, fineDining, testCategories } from "../fixtures.js";
 
 EventEmitter.setMaxListeners(25);
 
@@ -13,11 +13,11 @@ suite("Category API tests", () => {
     setup(async () => {
         myPOIService.clearAuth();
         user = await myPOIService.createUser(maggie)
-        await myPOIService.authenticate(maggie);
+        await myPOIService.authenticate(maggieCredentials);
         await myPOIService.deleteAllCategories();
         await myPOIService.deleteAllUsers();
         user = await myPOIService.createUser(maggie);
-        await myPOIService.authenticate(maggie);
+        await myPOIService.authenticate(maggieCredentials);
         fineDining.userid = user._id;
     });
 

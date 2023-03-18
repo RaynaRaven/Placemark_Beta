@@ -1,7 +1,7 @@
 import { assert } from "chai";
 import { assertSubset } from "../test-utils.js";
 import { myPOIService } from "./myPOI-service.js";
-import { maggie, fineDining, testCategories, testLocations, jaspers } from "../fixtures.js";
+import { maggieCredentials, maggie, fineDining, testCategories, testLocations, jaspers } from "../fixtures.js";
 
 suite("Location API tests", () => {
     let user = null;
@@ -10,12 +10,12 @@ suite("Location API tests", () => {
     setup(async () => {
         myPOIService.clearAuth();
         user = await myPOIService.createUser(maggie);
-        await myPOIService.authenticate(maggie)
+        await myPOIService.authenticate(maggieCredentials)
         await myPOIService.deleteAllCategories();
         await myPOIService.deleteAllLocations();
         await myPOIService.deleteAllUsers();
         user = await myPOIService.createUser(maggie);
-        await myPOIService.authenticate(maggie);
+        await myPOIService.authenticate(maggieCredentials);
         fineDining.userid = user._id;
         cheapEats = await myPOIService.createCategory(fineDining);
     });
