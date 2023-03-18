@@ -4,12 +4,10 @@ import { testCategories, fineDining } from "../fixtures.js";
 import {assertSubset} from "../test-utils.js";
 import { EventEmitter } from "events";
 
-
-
+EventEmitter.setMaxListeners(25);
 suite("Category Model tests", () => {
 
     setup(async () => {
-        EventEmitter.setMaxListeners(25);
         db.init("mongo");
         await db.categoryStore.deleteAllCategories();
         for (let i = 0; i < testCategories.length; i += 1) {
