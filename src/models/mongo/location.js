@@ -6,7 +6,7 @@ const locationSchema = new Schema({
     name: String,
     description: String,
     location: String,
-    categoryid: {
+    categoryId: {
         type: Schema.Types.ObjectId,
         ref: "Category",
     },
