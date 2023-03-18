@@ -9,7 +9,6 @@ import Cookie from "@hapi/cookie";
 import dotenv from "dotenv";
 import Joi from "joi";
 
-
 // import utilities to locate folder paths
 import { fileURLToPath } from "url";
 import { webRoutes } from "./web-routes.js";
@@ -39,25 +38,11 @@ async function init() {
     port: 3000,
     host: "localhost",
   });
+  await server.register(Inert);
   await server.register(Vision);
   await server.register(Cookie);
   await server.register(jwt);
-  await server.register(Inert);
-  server.validator(Joi);
-  server.auth.strategy("session", "cookie", {
-    cookie: {
-      name: process.env.COOKIE_NAME,
-      password: process.env.COOKIE_PASSWORD,
-      isSecure: false,
-    },
-    redirectTo: "/",
-    validate: accountsController.validate,
-  });
-  server.auth.strategy("jwt", "jwt", {
-    key: process.env.cookie_password,
-    validate: validate,
-    verifyOptions: { algorithms: ["HS256"] }
-  });
+
   await server.register([
     Inert,
     Vision,
@@ -66,7 +51,9 @@ async function init() {
       options: swaggerOptions,
     },
   ]);
-  server.auth.default("session");
+
+  server.validator(Joi);
+
   server.views({
     engines: {
       hbs: Handlebars,
@@ -78,6 +65,25 @@ async function init() {
     layout: true,
     isCached: false,
   });
+
+  server.auth.strategy("session", "cookie", {
+    cookie: {
+      name: process.env.COOKIE_NAME,
+      password: process.env.COOKIE_PASSWORD,
+      isSecure: false,
+    },
+    redirectTo: "/",
+    validate: accountsController.validate,
+  });
+
+  server.auth.strategy("jwt", "jwt", {
+    key: process.env.cookie_password,
+    validate: validate,
+    verifyOptions: { algorithms: ["HS256"] }
+  });
+
+  server.auth.default("session");
+
 
   db.init("mongo");
   server.route(webRoutes);

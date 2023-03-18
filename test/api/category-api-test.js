@@ -11,9 +11,13 @@ suite("Category API tests", () => {
     let user = null;
 
     setup(async () => {
+        myPOIService.clearAuth();
+        user = await myPOIService.createUser(maggie)
+        await myPOIService.authenticate(maggie);
         await myPOIService.deleteAllCategories();
         await myPOIService.deleteAllUsers();
         user = await myPOIService.createUser(maggie);
+        await myPOIService.authenticate(maggie);
         fineDining.userid = user._id;
     });
 

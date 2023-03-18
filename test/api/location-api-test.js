@@ -8,14 +8,14 @@ suite("Location API tests", () => {
     let cheapEats = null;
 
     setup(async () => {
-        //myPOIService.clearAuth();
+        myPOIService.clearAuth();
         user = await myPOIService.createUser(maggie);
-        // await myPOIService.authenticate(maggie)
+        await myPOIService.authenticate(maggie)
         await myPOIService.deleteAllCategories();
         await myPOIService.deleteAllLocations();
         await myPOIService.deleteAllUsers();
-        //user = await playtimeService.createUser(maggie);
-        //await playtimeService.authenticate(maggie);
+        user = await myPOIService.createUser(maggie);
+        await myPOIService.authenticate(maggie);
         fineDining.userid = user._id;
         cheapEats = await myPOIService.createCategory(fineDining);
     });

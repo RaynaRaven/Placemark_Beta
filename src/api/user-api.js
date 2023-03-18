@@ -25,7 +25,9 @@ export const userApi = {
     },
 
     find: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function (request, h) {
             try {
                 const users = await db.userStore.getAllUsers();
@@ -41,7 +43,9 @@ export const userApi = {
     },
 
     findOne: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function (request, h) {
             try {
                 const user = await db.userStore.getUserById(request.params.id);
@@ -81,7 +85,9 @@ export const userApi = {
     },
 
     deleteAll: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
         handler: async function (request, h) {
             try {
                 await db.userStore.deleteAll();
