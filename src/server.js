@@ -1,10 +1,13 @@
 import Hapi from "@hapi/hapi";
 import Vision from "@hapi/vision";
+import Inert from "@hapi/inert";
+import HapiSwagger from "hapi-swagger";
 import Handlebars from "handlebars";
 import path from "path";
 import Cookie from "@hapi/cookie";
 import dotenv from "dotenv";
 import Joi from "joi";
+
 
 // import utilities to locate folder paths
 import { fileURLToPath } from "url";
@@ -21,6 +24,13 @@ if (result.error) {
   console.log(result.error.message);
   process.exit(1);
 }
+
+const swaggerOptions = {
+  info: {
+    title: "myPOI API",
+    version: "0.1",
+  },
+};
 
 // initialise a server
 async function init() {
@@ -40,6 +50,15 @@ async function init() {
     redirectTo: "/",
     validate: accountsController.validate,
   });
+  await server.register(Inert);
+  await server.register([
+    Inert,
+    Vision,
+    {
+      plugin: HapiSwagger,
+      options: swaggerOptions,
+    },
+  ]);
   server.auth.default("session");
   server.views({
     engines: {

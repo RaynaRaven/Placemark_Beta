@@ -18,4 +18,6 @@ export const webRoutes = [
   { method: "POST", path: "/category/{id}/addLocation", config: categoryController.addLocation },
   { method: "GET", path: "/dashboard/deleteCategory/{id}", config: dashboardController.deleteCategory },
   { method: "GET", path: "/category/{id}/deleteLocation/{locationId}", config: categoryController.deleteLocation },
+  { method: "GET", path: "/{param*}", handler: { directory: { path: "./public" } }, options: { auth: false } }
+
 ];
