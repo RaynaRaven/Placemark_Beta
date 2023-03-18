@@ -15,7 +15,7 @@ export const UserCredentialsSpec = {
 export const LocationSpec = {
     name: Joi.string().required(),
     description: Joi.string().required(),
-    location: Joi.number().allow("").optional(),
+    location: Joi.string().allow("").optional(),
 };
 
 export const CategorySpec = {
