@@ -123,4 +123,4 @@ dist
 .pnp.*
 
 # dotenv file
-#.env
+# .env
