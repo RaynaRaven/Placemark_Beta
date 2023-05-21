@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import { maggie, serviceUrl } from "../fixtures.js";
 
 export const myPOIService = {
@@ -16,8 +15,12 @@ export const myPOIService = {
     },
 
     async getAllUsers() {
-        const res = await axios.get(`${this.myPOIUrl}/api/users`);
-        return res.data;
+        try {
+            const res = await axios.get(`${this.myPOIUrl}/api/users`);
+            return res.data;
+        } catch (e) {
+            return null;
+        }
     },
 
     async deleteAllUsers() {
@@ -77,11 +80,13 @@ export const myPOIService = {
 
     async authenticate(user) {
         const response = await axios.post(`${this.myPOIUrl}/api/users/authenticate`, user);
-        axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+        //axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.token;
+        axios.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
         return response.data;
     },
 
     async clearAuth() {
-        axios.defaults.headers.common["Authorization"] = "";
+        //axios.defaults.headers.common["Authorization"] = "";
+        axios.defaults.headers.common.Authorization = "";
     }
 };

@@ -73,7 +73,7 @@ export const testLocations = [
 ];
 
 
-//export const serviceUrl = "http://localhost:3000";
-export const serviceUrl = "https://playtime-10-XXX.onrender.com";
+export const serviceUrl = "http://localhost:4000";
+//export const serviceUrl = "https://playtime-10-XXX.onrender.com";
 
 
