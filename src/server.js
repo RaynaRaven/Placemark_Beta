@@ -1,7 +1,7 @@
 import Hapi from "@hapi/hapi";
 import Vision from "@hapi/vision";
 import Inert from "@hapi/inert";
-import HapiSwagger from "hapi-swagger";
+//import HapiSwagger from "hapi-swagger";
 import jwt from "hapi-auth-jwt2";
 import Handlebars from "handlebars";
 import path from "path";
@@ -25,20 +25,20 @@ if (result.error) {
   process.exit(1);
 }
 
-const swaggerOptions = {
-  info: {
-    title: "myPOI API",
-    version: "0.1",
-  },
-  securityDefinitions: {
-    jwt: {
-      type: "apiKey",
-      name: "Authorization",
-      in: "header"
-    }
-  },
-  security: [{ jwt: [] }],
-};
+// const swaggerOptions = {
+//   info: {
+//     title: "myPOI API",
+//     version: "0.1",
+//   },
+//   securityDefinitions: {
+//     jwt: {
+//       type: "apiKey",
+//       name: "Authorization",
+//       in: "header"
+//     }
+//   },
+//   security: [{ jwt: [] }],
+// };
 
 // initialise a server
 async function init() {
@@ -55,10 +55,10 @@ async function init() {
   await server.register([
     Inert,
     Vision,
-    {
-      plugin: HapiSwagger,
-      options: swaggerOptions,
-    },
+    // {
+    //   plugin: HapiSwagger,
+    //   options: swaggerOptions,
+    // },
   ]);
 
   server.validator(Joi);
