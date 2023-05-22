@@ -25,7 +25,9 @@ export const LocationSpec = Joi.object()
     .keys({
         name: Joi.string().required().example("Jaspers"),
         description: Joi.string().optional().example("Jasper’s restaurant located in the heart of Monck Street in the electric and vibrant Crown Quarter brings a new dimension to local cuisine in Wexford."),
-        location: Joi.string().allow("").optional().example(12),
+        // location: Joi.string().allow("").optional().example(12),
+        latitude: Joi.number().min(-90).max(90).required(),
+        longitude: Joi.number().min(-180).max(180).required(),
         categoryId: IdSpec,
     })
     .label("Location");

@@ -3,9 +3,20 @@ import Mongoose from "mongoose";
 const { Schema } = Mongoose;
 
 const locationSchema = new Schema({
-    name: String,
+    // name: String,
+    // description: String,
+    // lat: String,
+    // categoryId: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "Category",
+    // },
+    name: {
+        type: String,
+        required: true
+    },
     description: String,
-    location: String,
+    latitude: Number,
+    longitude: Number,
     categoryId: {
         type: Schema.Types.ObjectId,
         ref: "Category",

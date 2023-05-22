@@ -32,7 +32,9 @@ export const seedData = {
     track_1 : {
       name: "Billy Bunters",
       description: "best fish box in town",
-      location: "52.83589902444309, -6.915504901522804",
+      // location: "52.83589902444309, -6.915504901522804",
+      latitude: 52.83589902444309,
+      longitude: -6.915504901522804,
       categoryId: "->categories.cheap_eats"
     },
   }
