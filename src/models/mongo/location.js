@@ -17,6 +17,7 @@ const locationSchema = new Schema({
     description: String,
     latitude: Number,
     longitude: Number,
+    isSeed: Boolean,
     categoryId: {
         type: Schema.Types.ObjectId,
         ref: "Category",

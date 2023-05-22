@@ -8,6 +8,7 @@ const userSchema = new Schema({
     lastName: String,
     email: String,
     password: String,
+    isSeed: Boolean
 });
 
 export const User = Mongoose.model("User", userSchema);

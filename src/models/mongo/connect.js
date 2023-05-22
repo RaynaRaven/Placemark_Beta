@@ -2,12 +2,17 @@ import * as dotenv from "dotenv";
 import Mongoose from "mongoose";
 import * as mongooseSeeder from "mais-mongoose-seeder";
 import { seedData } from "./seed-data.js";
+import {User} from "./user.js";
 
 const seedLib = mongooseSeeder.default;
 
 async function seed() {
     const seeder = seedLib(Mongoose);
-    const dbData = await seeder.seed(seedData, { dropDatabase: false, dropCollections: true });
+
+    // Drop the seeded users
+    await User.deleteMany({ isSeed: true });
+
+    const dbData = await seeder.seed(seedData, { dropDatabase: false, dropCollections: false });
     console.log(dbData);
 }
 
