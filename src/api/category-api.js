@@ -1,7 +1,7 @@
 import Boom from "@hapi/boom";
-import { IdSpec, CategoryArraySpec, CategorySpec, CategorySpecPlus } from "../models/joi-schemas.js";
+// import { IdSpec, CategoryArraySpec, CategorySpec, CategorySpecPlus } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
-import { validationError } from "./logger.js";
+// import { validationError } from "./logger.js";
 
 export const categoryApi = {
     find: {
@@ -17,7 +17,7 @@ export const categoryApi = {
             }
         },
         tags: ["api"],
-        response: { schema: CategoryArraySpec, failAction: validationError },
+        // response: { schema: CategoryArraySpec, failAction: validationError },
         description: "Get all categories",
         notes: "Returns all categories",
     },
@@ -40,8 +40,8 @@ export const categoryApi = {
         tags: ["api"],
         description: "Find a Category",
         notes: "Returns a category",
-        validate: { params: { id: IdSpec }, failAction: validationError },
-        response: { schema: CategorySpecPlus, failAction: validationError },
+        // validate: { params: { id: IdSpec }, failAction: validationError },
+        // response: { schema: CategorySpecPlus, failAction: validationError },
     },
 
     create: {
@@ -63,8 +63,8 @@ export const categoryApi = {
         tags: ["api"],
         description: "Create a Category",
         notes: "Returns the newly created category",
-        validate: { payload: CategorySpec, failAction: validationError },
-        response: { schema: CategorySpecPlus, failAction: validationError },
+        // validate: { payload: CategorySpec, failAction: validationError },
+        // response: { schema: CategorySpecPlus, failAction: validationError },
     },
 
     deleteOne: {
@@ -85,7 +85,7 @@ export const categoryApi = {
         },
         tags: ["api"],
         description: "Delete a category",
-        validate: { params: { id: IdSpec }, failAction: validationError },
+        // validate: { params: { id: IdSpec }, failAction: validationError },
     },
 
     deleteAll: {

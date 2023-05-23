@@ -10,7 +10,7 @@ suite("Location API tests", () => {
     setup(async () => {
         myPOIService.clearAuth();
         user = await myPOIService.createUser(maggie);
-        await myPOIService.authenticate(maggieCredentials)
+        await myPOIService.authenticate(maggieCredentials);
         await myPOIService.deleteAllCategories();
         await myPOIService.deleteAllLocations();
         await myPOIService.deleteAllUsers();
@@ -20,7 +20,9 @@ suite("Location API tests", () => {
         cheapEats = await myPOIService.createCategory(fineDining);
     });
 
-    teardown(async () => {});
+    teardown(async () => {
+        await myPOIService.deleteAllUsers();
+    });
 
     test("create location", async () => {
         const returnedLocation = await myPOIService.createLocation(cheapEats._id, jaspers);
@@ -67,4 +69,6 @@ suite("Location API tests", () => {
             assertSubset(testLocations[i], returnedCategory.locations[i]);
         }
     });
+
+    // teardown(async () => {});
 });

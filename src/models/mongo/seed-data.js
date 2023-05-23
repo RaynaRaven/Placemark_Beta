@@ -25,21 +25,20 @@ export const seedData = {
   },
   categories: {
     _model: "Category",
-    mozart: {
-      title: "Cheap Eats",
+    cheap_eats: {
+      name: "Cheap Eats",
       isSeed: true,
       userid: "->users.bart"
     }
   },
   locations: {
     _model : "Location",
-    track_1 : {
+    billyBunters : {
       name: "Billy Bunters",
-      isSeed: true,
       description: "best fish box in town",
-      // location: "52.83589902444309, -6.915504901522804",
       latitude: 52.83589902444309,
       longitude: -6.915504901522804,
+      isSeed: true,
       categoryId: "->categories.cheap_eats"
     },
   }

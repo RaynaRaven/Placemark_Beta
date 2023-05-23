@@ -41,7 +41,7 @@ export const LocationArraySpec = Joi.array().items(LocationSpecPlus).label("Loca
 
 export const CategorySpec = Joi.object()
     .keys({
-        title: Joi.string().required().example("Fine Dining"),
+        name: Joi.string().required().example("Fine Dining"),
         userid: IdSpec,
         locations: LocationArraySpec,
     })

@@ -31,7 +31,7 @@ export const testUsers = [
 ];
 
 export const fineDining = {
-    title: "Fine Dining"
+    name: "Fine Dining"
 };
 export const jaspers = {
     "name": "Jaspers",
@@ -46,13 +46,13 @@ export const barsPubs = {
 };
 export const testCategories = [
     {
-        title: "Cheap Eats"
+        name: "Cheap Eats"
     },
     {
-        title: "Mid-range"
+        name: "Mid-range"
     },
     {
-        title: "Bars"
+        name: "Bars"
     }
 ];
 

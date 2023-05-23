@@ -2,7 +2,9 @@ import { Location } from "./location.js";
 
 export const locationMongoStore = {
     async getAllLocations() {
-        const locations = await Location.find().lean();
+        // const locations = await Location.find().lean();
+        const locations = await Location.find().populate("categoryId").lean();
+        console.log(locations);
         return locations;
     },
 

@@ -3,16 +3,20 @@ import Mongoose from "mongoose";
 import * as mongooseSeeder from "mais-mongoose-seeder";
 import { seedData } from "./seed-data.js";
 import {User} from "./user.js";
+import {Category} from "./category.js";
+import {Location} from "./location.js";
 
 const seedLib = mongooseSeeder.default;
 
 async function seed() {
     const seeder = seedLib(Mongoose);
 
-    // Drop the seeded users
+    // Drop seeded users, categories, locations
     await User.deleteMany({ isSeed: true });
+    await Category.deleteMany({ isSeed: true});
+    await Location.deleteMany({ isSeed: true });
 
-    const dbData = await seeder.seed(seedData, { dropDatabase: false, dropCollections: false });
+    const dbData = await seeder.seed(seedData, { dropDatabase: false, dropCollections: true });
     console.log(dbData);
 }
 

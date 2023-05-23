@@ -3,7 +3,7 @@ import Mongoose from "mongoose";
 const { Schema } = Mongoose;
 
 const categorySchema = new Schema({
-    title: String,
+    name: String,
     isSeed: Boolean,
     userid: {
         type: Schema.Types.ObjectId,
