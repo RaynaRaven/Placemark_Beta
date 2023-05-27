@@ -30,21 +30,22 @@ export function decodeToken(token) {
 
 export async function validate(decoded, request) {
     const user = await db.userStore.getUserById(decoded.id);
+    // console.log("PLEASE PLEASE PLEASE !!!!!!!!!!!!!!!!!!!!!!", decoded)
     if (!user) {
         return { isValid: false };
     }
     return { isValid: true, credentials: user };
 }
 
-export function getUserIdFromRequest(request) {
-    let userId = null;
-    try {
-        const { authorization } = request.headers;
-        const token = authorization.split(" ")[1];
-        const decodedToken = jwt.verify(token, "secretpasswordnotrevealedtoanyone");
-        userId = decodedToken.id;
-    } catch (e) {
-        userId = null;
-    }
-    return userId;
-}
+// export function getUserIdFromRequest(request) {
+//     let userId = null;
+//     try {
+//         const { authorization } = request.headers;
+//         const token = authorization.split(" ")[1];
+//         const decodedToken = jwt.verify(token, "secretpasswordnotrevealedtoanyone");
+//         userId = decodedToken.id;
+//     } catch (e) {
+//         userId = null;
+//     }
+//     return userId;
+// }

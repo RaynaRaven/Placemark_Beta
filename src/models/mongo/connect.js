@@ -16,8 +16,8 @@ async function seed() {
     await Category.deleteMany({ isSeed: true});
     await Location.deleteMany({ isSeed: true });
 
-    const dbData = await seeder.seed(seedData, { dropDatabase: false, dropCollections: true });
-    console.log(dbData);
+    const dbData = await seeder.seed(seedData, { dropDatabase: false, dropCollections: false });
+    // console.log(dbData);
 }
 
 export function connectMongo() {

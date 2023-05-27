@@ -45,6 +45,29 @@ export const userApi = {
     response: { schema: UserSpecPlus, failAction: validationError },
   },
 
+  findByEmail: {
+    // auth: {
+    //   strategy: "jwt",
+    // },
+    auth: false,
+    handler: async function (request, h) {
+      try {
+        const user = await db.userStore.getUserByEmail(request.params.id);
+        if (!user) {
+          return Boom.notFound("No User with this id");
+        }
+        return user;
+      } catch (err) {
+        return Boom.serverUnavailable("No User with this id");
+      }
+    },
+    tags: ["api"],
+    description: "Get a specific user",
+    notes: "Returns user details",
+    validate: { params: { id: IdSpec }, failAction: validationError },
+    response: { schema: UserSpecPlus, failAction: validationError },
+  },
+
   create: {
     auth: false,
     handler: async function (request, h) {

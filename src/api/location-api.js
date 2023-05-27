@@ -5,10 +5,14 @@ import { db } from "../models/db.js";
 
 export const locationApi = {
     find: {
-        auth: false,
+        auth: {
+          strategy: "jwt",
+        },
+        // auth: false,
         handler: async function (request, h) {
             try {
-                const locations = await db.locationStore.getAllLocations();
+                console.log("INSPECT2!",request.query.categoryId);
+                const locations = await db.locationStore.getLocationsByCategoryId(request.query.categoryId);
                 return locations;
             } catch (err) {
                 return Boom.serverUnavailable("Database Error");
@@ -16,8 +20,8 @@ export const locationApi = {
         },
         tags: ["api"],
         // response: { schema: LocationArraySpec, failAction: validationError },
-        description: "Get all locationApi",
-        notes: "Returns all locationApi",
+        description: "Get locations by Cat Id",
+        notes: "Returns all locations by Cat Id",
     },
 
     findOne: {
@@ -41,10 +45,14 @@ export const locationApi = {
     },
 
     create: {
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
+        // auth: false,
         handler: async function (request, h) {
             try {
-                const location = await db.locationStore.addLocation(request.params.id, request.payload);
+                // console.log("INCOMING CREATE LOC PAYLOAD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", request)
+                const location = await db.locationStore.addLocation(request.payload.categoryId, request.payload);
                 if (location) {
                     return h.response(location).code(201);
                 }

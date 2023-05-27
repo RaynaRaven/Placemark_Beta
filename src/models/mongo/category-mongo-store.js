@@ -18,8 +18,8 @@ export const categoryMongoStore = {
         return null;
     },
 
-    async addCategory(category) {
-        const newCategory = new Category(category);
+    async addCategory(name, userid) {
+        const newCategory = new Category({name, userid});
         const categoryObj = await newCategory.save();
         return this.getCategoryById(categoryObj._id);
     },

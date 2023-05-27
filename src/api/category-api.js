@@ -1,16 +1,18 @@
 import Boom from "@hapi/boom";
 // import { IdSpec, CategoryArraySpec, CategorySpec, CategorySpecPlus } from "../models/joi-schemas.js";
 import { db } from "../models/db.js";
-// import { validationError } from "./logger.js";
+import { validationError } from "./logger.js";
 
 export const categoryApi = {
     find: {
         auth: {
             strategy: "jwt",
         },
+        // auth: false,
         handler: async function (request, h) {
             try {
-                const categories = await db.categoryStore.getAllCategories();
+                const categories = await db.categoryStore.getUserCategories(request.auth.artifacts.decoded.id);
+                // const categories = await db.categoryStore.getUserCategories();
                 return categories;
             } catch (err) {
                 return Boom.serverUnavailable("Database Error");
@@ -23,9 +25,10 @@ export const categoryApi = {
     },
 
     findOne: {
-        auth: {
-            strategy: "jwt",
-        },
+        // auth: {
+        //     strategy: "jwt",
+        // },
+        auth: false,
         async handler(request) {
             try {
                 const category = await db.categoryStore.getCategoryById(request.params.id);
@@ -48,10 +51,15 @@ export const categoryApi = {
         auth: {
             strategy: "jwt",
         },
+        // auth: false,
         handler: async function (request, h) {
             try {
-                const category = request.payload;
-                const newCategory = await db.categoryStore.addCategory(category);
+                // console.log("INCOMING CREATE CAT PAYLOAD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!", request)
+
+                const newCategory = await db.categoryStore.addCategory(
+                    /* name:   */ request.payload.name ,
+                    /* userid: */ request.auth.artifacts.decoded.id
+                );
                 if (newCategory) {
                     return h.response(newCategory).code(201);
                 }

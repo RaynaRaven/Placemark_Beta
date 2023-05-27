@@ -4,19 +4,20 @@ export const locationMongoStore = {
     async getAllLocations() {
         // const locations = await Location.find().lean();
         const locations = await Location.find().populate("categoryId").lean();
-        console.log(locations);
+        // console.log(locations);
         return locations;
     },
 
     async addLocation(categoryId, location) {
-        location.categoryid = categoryId;
+        location.categoryId = categoryId;
         const newLocation = new Location(location);
         const locationObj = await newLocation.save();
         return this.getLocationById(locationObj._id);
     },
 
     async getLocationsByCategoryId(id) {
-        const locations = await Location.find({ categoryid: id }).lean();
+        // console.log("catID please", id);
+        const locations = await Location.find({ categoryId: id }).lean();
         return locations;
     },
 
