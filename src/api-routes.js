@@ -18,6 +18,7 @@ export const apiRoutes = [
     { method: "DELETE", path: "/api/categories/{id}", config: categoryApi.deleteOne },
 
     { method: "GET", path: "/api/locations", config: locationApi.find },
+    { method: "GET", path: "/api/locations/byCategory", config: locationApi.findByCategory },
     { method: "GET", path: "/api/locations/{id}", config: locationApi.findOne },
     { method: "POST", path: "/api/categories/{id}/locations", config: locationApi.create },
     { method: "DELETE", path: "/api/locations", config: locationApi.deleteAll },

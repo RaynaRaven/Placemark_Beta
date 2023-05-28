@@ -4,14 +4,35 @@ import { db } from "../models/db.js";
 // import { validationError } from "./logger.js";
 
 export const locationApi = {
+
     find: {
+        auth: {
+            strategy: "jwt",
+        },
+        // auth: false,
+        handler: async function (request, h) {
+            try {
+                // console.log("IS THIS FIRING?", request)
+                const locations = await db.locationStore.getAllLocations();
+                return locations;
+            } catch (err) {
+                return Boom.serverUnavailable("Database Error");
+            }
+        },
+        tags: ["api"],
+        // response: { schema: LocationArraySpec, failAction: validationError },
+        description: "Get locations",
+        notes: "Returns all locations",
+    },
+
+    findByCategory: {
         auth: {
           strategy: "jwt",
         },
         // auth: false,
         handler: async function (request, h) {
             try {
-                console.log("INSPECT2!",request.query.categoryId);
+                // console.log("INSPECT2!",request.query.categoryId);
                 const locations = await db.locationStore.getLocationsByCategoryId(request.query.categoryId);
                 return locations;
             } catch (err) {

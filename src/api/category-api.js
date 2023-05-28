@@ -25,10 +25,10 @@ export const categoryApi = {
     },
 
     findOne: {
-        // auth: {
-        //     strategy: "jwt",
-        // },
-        auth: false,
+        auth: {
+            strategy: "jwt",
+        },
+        // auth: false,
         async handler(request) {
             try {
                 const category = await db.categoryStore.getCategoryById(request.params.id);
@@ -81,6 +81,7 @@ export const categoryApi = {
         },
         handler: async function (request, h) {
             try {
+                console.log("DELETE", request);
                 const category = await db.categoryStore.getCategoryById(request.params.id);
                 if (!category) {
                     return Boom.notFound("No Category with this id");
